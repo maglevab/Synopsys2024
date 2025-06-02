@@ -18,6 +18,7 @@ mycursor.execute(query)
 results = []
 for row in mycursor.fetchall():
     results.append(row)
+#table headers:
 # 0 -> PoleLat
 # 1 -> PoleLong
 # 2 -> PoleZipcode
@@ -48,6 +49,7 @@ def getIndex(long):
     poleCol = list(masterDf[1])
     return poleCol.index(long)
 
+#rates population around power pole
 def scalePopulationScore(pop):
     pop = float(pop)
     if pop < 1/3:
@@ -56,6 +58,7 @@ def scalePopulationScore(pop):
         return "Medium"
     return "High"
 
+#rates distance to substation from power pole
 def scaleDistanceScore(dist):
     dist = float(dist)
     if dist < 1 / 3:
@@ -64,11 +67,13 @@ def scaleDistanceScore(dist):
         return "Medium"
     return "High"
 
+#rates zone around power pole
 def scaleZoneScore(zone):
     if zone == 0:
         return "Urban"
     return "Forest"
 
+#rates tilt angle of power pole
 def scaleTiltAngleScore(angle):
     if angle == 0.3:
         return "Low"
