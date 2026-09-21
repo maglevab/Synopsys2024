@@ -31,6 +31,7 @@ while True:
     # Wait for message
     message, address = sock.recvfrom(4096)
 
+    #Unpack data from raspberry pi
     print(f'Received {len(message)} bytes:')
     lat, long, sensorData = unpack('11s 12s 3s', message)
     lat = float(lat)
